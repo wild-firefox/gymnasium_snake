@@ -4,7 +4,7 @@ import time
 import random
 
 def main():
-    env = gym.make('Snake-v0', render_mode="human")
+    env = gym.make('Snake-v0')
     
     obs, info = env.reset()
     total_reward = 0
@@ -21,7 +21,6 @@ def main():
             action = random.choice(valid_actions)
         
         obs, reward, terminated, truncated, info = env.step(action)
-        env.render()
         time.sleep(0.1)
         
         total_reward += reward

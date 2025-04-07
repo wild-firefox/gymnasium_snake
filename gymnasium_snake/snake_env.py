@@ -34,8 +34,8 @@ class SnakeEnv(gym.Env):
         self.color_food = (255, 0, 0)
 
         # 定义贪吃蛇环境的观测空间和行动空间
-        low = np.array([-10, -1.0, 0, 0, 0, 0])  # 连续状态空间的最小值
-        high = np.array([10, 1.0, 1.0, 1.0, 1.0, 1.0])  # 连续状态空间的最大值
+        low = np.array([-(width-1), -(height-1), 0, 0, 0, 0],dtype=np.float32)  # 连续状态空间的最小值
+        high = np.array([width-1, height-1, 1.0, 1.0, 1.0, 1.0],dtype=np.float32)  # 连续状态空间的最大值
         self.observation_space = gym.spaces.Box(low, high, shape=(6,), dtype=np.float32)
 
         # 0 左 1上 2右 3下
@@ -156,12 +156,16 @@ class SnakeEnv(gym.Env):
         if self.render_mode is None:
             return
             
-        if self.window is None and self.render_mode == "human":
+        # 无论何种渲染模式，都需要初始化 pygame 和字体
+        if self.window is None:
             pygame.init()
             pygame.font.init()
             self.font = pygame.font.Font(None, 30)
-            self.window = pygame.display.set_mode(self.window_size)
-            pygame.display.set_caption("Snake Game")
+            
+            # 只有在 human 模式下才创建窗口
+            if self.render_mode == "human":
+                self.window = pygame.display.set_mode(self.window_size)
+                pygame.display.set_caption("Snake Game")
 
         canvas = pygame.Surface(self.window_size)
         canvas.fill(self.color_bg)
