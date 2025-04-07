@@ -8,13 +8,8 @@
 
 在标准实现中，蛇的合法动作空间会随当前方向动态变化。例如，若当前方向为右（Right），则左（Left）动作应被屏蔽
 
-环境示例：
-    <div style="text-align: center;">
-        <video controls width="600">
-            <source src="video\rl-video-episode-0.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
+环境示例：  
+<img align="middle" width="300"  src="snake_v0.gif">    
 ## 环境信息
 
 - 环境名称：`Snake-v0`
@@ -81,3 +76,6 @@ pip install -e .
 ```bash
 pip install git+https://github.com/wild-firefox/gymnasium_snake.git
 ```
+
+## 致谢
+[https://github.com/sunwuzhou03/reinforcement-learning-lab/blob/main/ppo/custom_env/snake_env.py](https://github.com/sunwuzhou03/reinforcement-learning-lab/blob/main/ppo/custom_env/snake_env.py)
